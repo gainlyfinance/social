@@ -7,7 +7,7 @@ import time
 import unicodedata
 
 import platforms as P
-from common import started, CONFIG, DRY, log, queue_items, save_state, state
+from common import CONFIG, DRY, log, queue_items, save_state, state
 from tokens import threads_token
 
 DEV_DIGITS = str.maketrans('०१२३४५६७८९', '0123456789')
@@ -22,9 +22,7 @@ def norm(text):
 
 
 def main():
-    if not started():
-        log('Autopilot not started yet (config.json start_date). Nothing to do.')
-        return 0
+    # Replies run whenever something has been posted, even before start_date (for test posts).
     items = {it['slug']: it for it in queue_items()}
     published = state('published', [])
     replied = set(state('replied', []))
