@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: Anek; src: url(../assets/fonts/anek-devanagari-400.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: Anek; src: url(../assets/fonts/anek-devanagari-700.woff2) format("woff2"); font-weight: 700; }
+@font-face { font-family: AnekLatin; src: url(../assets/fonts/anek-latin-var.woff2) format("woff2"); font-weight: 100 900; }
+:root {
+  --ink: #13294b; --ink-2: #1c3a66; --paper: #f3f7f5; --white: #ffffff; --soft: #c9d4e4;
+  --gain: #2fb383; --gain-deep: #0e7a5c; --gold: #e39b12; --cost: #e0566a; --base: #8fa6c1;
+  --font: AnekLatin, Anek, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: var(--w); height: var(--h); overflow: hidden; background: var(--ink); color: var(--white); font-family: var(--font) }
+.frame { position: absolute; inset: 0; background: radial-gradient(120% 70% at 85% 0%, var(--ink-2) 0%, var(--ink) 60%) }
+.top { position: absolute; left: 72px; right: 72px; top: 90px; display: flex; align-items: center; gap: 22px }
+.top .logo { height: 96px; width: auto }
+.brand { font-weight: 700; font-size: 46px; letter-spacing: .5px }
+.tag { margin-left: auto; font-size: 30px; color: var(--soft); border: 2px solid rgba(201,212,228,.35); border-radius: 40px; padding: 8px 24px }
+.scene { position: absolute; left: 72px; right: 72px; top: 260px; bottom: 420px; display: flex; flex-direction: column; justify-content: center; gap: 36px; opacity: 0 }
+h1 { font-weight: 700; font-size: 104px; line-height: 1.12; text-wrap: balance }
+.who { font-size: 46px; color: var(--soft) }
+.who b { color: var(--white); font-weight: 700 }
+.rows { display: flex; flex-direction: column; gap: 22px }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; background: rgba(255,255,255,.07); border-radius: 26px; padding: 30px 36px; font-size: 44px }
+.row span { color: var(--soft) }
+.row b { font-weight: 700; text-align: right }
+.label { font-size: 50px; color: var(--soft) }
+.big { font-weight: 700; font-size: 150px; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -2px }
+.underline { height: 14px; width: 0; background: var(--gold); border-radius: 7px }
+.bars { display: flex; flex-direction: column; gap: 26px; margin-top: 16px }
+.bar .t { display: flex; justify-content: space-between; font-size: 38px; margin-bottom: 10px; color: var(--soft) }
+.bar .t b { color: var(--white); font-variant-numeric: tabular-nums }
+.track { height: 46px; background: rgba(255,255,255,.08); border-radius: 23px; overflow: hidden }
+.fill { height: 100%; width: 0; border-radius: 23px }
+.insight { font-weight: 700; font-size: 96px; line-height: 1.15; text-wrap: balance }
+.insight em { font-style: normal; color: var(--gold) }
+.note { font-size: 40px; color: var(--soft) }
+.cta { font-size: 56px; color: var(--soft) }
+.site { font-weight: 700; font-size: 130px; color: var(--white) }
+.site i { font-style: normal; color: var(--gold) }
+.foot { position: absolute; left: 72px; right: 72px; bottom: 300px; font-size: 30px; color: rgba(201,212,228,.7) }
+.progress { position: absolute; left: 72px; right: 72px; top: 210px; height: 6px; background: rgba(255,255,255,.1); border-radius: 3px }
+.progress div { height: 100%; width: 0; background: var(--gold); border-radius: 3px }
+
+.mystery { font-weight: 700; font-size: 150px; line-height: 1; color: var(--gold); letter-spacing: -2px }
+.shock { font-weight: 700; font-size: 64px; color: var(--cost) }
+.ask { font-size: 54px; color: var(--soft) }
+.keyword { align-self: flex-start; transform-origin: left center; font-family: AnekLatin, sans-serif; font-weight: 700; font-size: 120px; line-height: 1; padding: 30px 48px; border: 6px solid var(--gold); border-radius: 36px; background: rgba(227,155,18,.12) }
+.small { font-size: 46px; color: var(--soft); line-height: 1.35 }
+.small b { color: var(--white) }
+.teaser { border: 3px solid var(--gold); border-radius: 28px; padding: 22px 28px; display: grid; gap: 8px; background: rgba(227,155,18,.08) }
+.teaser .q { font-size: 40px; font-weight: 700 }
+.teaser .m { font-size: 64px; font-weight: 700; color: var(--gold); line-height: 1 }
+.teaser .k { font-size: 30px; color: var(--soft) }
+.teaser .k b { color: var(--white); font-size: 36px; border: 2px solid var(--gold); border-radius: 12px; padding: 2px 14px }
+
+/* picture card (1080 x 1350) */
+body.card .scene { position: static; opacity: 1; gap: 18px }
+body.card .stack { position: absolute; left: 72px; right: 72px; top: 200px; bottom: 64px; display: flex; flex-direction: column; justify-content: space-between }
+body.card h1 { font-size: 66px; line-height: 1.12 }
+body.card .who { font-size: 34px }
+body.card .rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px }
+body.card .row { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 6px; padding: 18px 22px; font-size: 26px }
+body.card .row b { font-size: 34px; text-align: left; line-height: 1.15 }
+body.card .label { font-size: 32px }
+body.card .big { font-size: 112px }
+body.card .underline { height: 10px }
+body.card .bars { gap: 14px; margin-top: 4px }
+body.card .bar .t { font-size: 28px; margin-bottom: 6px }
+body.card .track { height: 26px }
+body.card .insight { font-size: 46px; color: var(--gold); line-height: 1.2 }
+body.card .foot { position: static; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 24px }
+body.card .foot b { font-size: 44px; color: var(--white); white-space: nowrap }
+body.card .top { top: 64px }
+</style>
+</head>
+<body>
+<div class="frame"></div>
+<div id="root"></div>
+<script>
+const ITEM = window.ITEM;
+const MODE = window.MODE || 'video';
+const W = MODE === 'video' ? 1080 : 1080, H = MODE === 'video' ? 1920 : 1350;
+document.documentElement.style.setProperty('--w', W + 'px');
+document.documentElement.style.setProperty('--h', H + 'px');
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const tone = t => ({gain: 'var(--gain)', cost: 'var(--cost)', base: 'var(--base)'}[t] || 'var(--base)');
+const maxBar = Math.max(...ITEM.bars.map(b => b.value), 1);
+const topbar = `<div class="top"><img class="logo" src="../assets/gainly-logo-white.svg" alt="Gainly"><div class="tag">फ्री कैलकुलेटर</div></div>`;
+const rows = ITEM.inputs.map(([k, v]) => `<div class="row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
+const bars = ITEM.bars.map((b, i) => `<div class="bar"><div class="t"><span>${esc(b.label)}</span><b>${inr(b.value)}</b></div><div class="track"><div class="fill" id="fill${i}" style="background:${tone(b.tone)}"></div></div></div>`).join('');
+
+const hidden = String(ITEM.twist.value >= 1e7 ? '₹?,??,??,???' : ITEM.twist.value >= 1e5 ? '₹??,??,???' : '₹??,???');
+const keyword = esc(ITEM.keyword);
+
+if (MODE === 'card') {
+  document.body.classList.add('card');
+  document.getElementById('root').innerHTML = topbar + `<div class="stack">
+    <div class="scene"><h1>${esc(ITEM.hook)}</h1><div class="rows">${rows}</div></div>
+    <div class="scene"><div class="label">${esc(ITEM.result.label)}</div><div class="big">${inr(ITEM.result.value)}</div><div class="underline" style="width:240px"></div><div class="bars">${bars}</div></div>
+    <div class="teaser"><div class="q">${esc(ITEM.twist.question)}</div><div class="m">${hidden}</div><div class="k">जवाब चाहिए? कमेंट में लिखें <b>${keyword}</b></div></div>
+    <div class="foot"><span>${esc(ITEM.note)} सलाह नहीं, सिर्फ हिसाब।</span><b>gainly.in</b></div></div>`;
+  ITEM.bars.forEach((b, i) => document.getElementById('fill' + i).style.width = (b.value / maxBar * 100) + '%');
+  window.renderAt = () => {};
+} else {
+  document.getElementById('root').innerHTML = topbar + `<div class="progress"><div id="prog"></div></div>
+    <div class="scene" id="s1"><h1>${esc(ITEM.hook)}</h1></div>
+    <div class="scene" id="s2"><div class="who">मान लीजिए:</div><div class="rows" id="rows">${rows}</div></div>
+    <div class="scene" id="s3"><div class="label">${esc(ITEM.result.label)}</div><div class="big" id="big">₹0</div><div class="underline" id="ul"></div><div class="bars">${bars}</div></div>
+    <div class="scene" id="s4"><h1>${esc(ITEM.twist.question)}</h1><div class="mystery" id="mys">${hidden}</div><div class="shock" id="shock">जवाब देखकर चौंक जाएंगे!</div></div>
+    <div class="scene" id="s5"><div class="ask">जवाब चाहिए? कमेंट में लिखें</div><div class="keyword" id="kw">${keyword}</div><div class="small">हम आपको जवाब भेज देंगे।</div></div>
+    <div class="scene" id="s6"><div class="small"><b>फॉलो / सब्सक्राइब</b> करना न भूलें</div><div class="small">और बताइए, <b>${esc(ITEM.question)}</b></div><img src="../assets/gainly-logo-white.svg" alt="Gainly" style="height:130px;width:auto;align-self:flex-start;margin-top:30px"><div class="site">gainly<i>.in</i></div></div>
+    <div class="foot">ये अंदाज़ा है, निवेश या टैक्स की सलाह नहीं।</div>`;
+}
+
+// Scene timings in seconds: [start, end]
+const SC = { s1: [0, 3.4], s2: [3.2, 8.0], s3: [7.8, 14.4], s4: [14.2, 19.6], s5: [19.4, 24.0], s6: [23.8, 28.5] };
+window.DURATION = 28.5;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+function show(id, t) {
+  const [a, b] = SC[id], el = document.getElementById(id);
+  const inn = ease((t - a) / 0.45), out = clamp((b - t) / 0.35);
+  el.style.opacity = Math.min(inn, out);
+  el.style.transform = `translateY(${(1 - inn) * 60}px)`;
+  return t - a;
+}
+if (MODE !== 'card') window.renderAt = function (t) {
+  document.getElementById('prog').style.width = (clamp(t / window.DURATION) * 100) + '%';
+  show('s1', t);
+  const l2 = show('s2', t);
+  document.querySelectorAll('#rows .row').forEach((r, i) => {
+    const p = ease((l2 - 0.6 - i * 0.6) / 0.45);
+    r.style.opacity = p; r.style.transform = `translateX(${(1 - p) * 80}px)`;
+  });
+  const l3 = show('s3', t);
+  const c = ease((l3 - 0.4) / 3.4);
+  document.getElementById('big').textContent = inr(ITEM.result.value * c);
+  document.getElementById('ul').style.width = (c * 100) + '%';
+  ITEM.bars.forEach((b, i) => {
+    const p = ease((l3 - 1.0 - i * 0.6) / 2.2);
+    document.getElementById('fill' + i).style.width = (b.value / maxBar * 100 * p) + '%';
+  });
+  const l4 = show('s4', t);
+  const shake = l4 > 1 ? Math.sin(l4 * 38) * 6 * Math.max(0, 1 - (l4 - 1) / 1.2) : 0;   // a short shiver when the ?? appear
+  const m = document.getElementById('mys');
+  m.style.opacity = ease((l4 - 0.8) / 0.3); m.style.transform = `translateX(${shake}px)`;
+  document.getElementById('shock').style.opacity = ease((l4 - 2.0) / 0.4);
+  const l5 = show('s5', t);
+  const pulse = 1 + 0.05 * Math.max(0, Math.sin((l5 - 0.8) * 4.5));
+  document.getElementById('kw').style.transform = `scale(${l5 > 0.8 ? pulse : 1})`;
+  show('s6', t);
+};
+window.READY = document.fonts.ready.then(() => true);
+</script>
+</body>
+</html>
