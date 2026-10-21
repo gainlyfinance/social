@@ -41,7 +41,7 @@ def main():
     redirect = f'http://127.0.0.1:{server.server_port}'
     auth = 'https://accounts.google.com/o/oauth2/v2/auth?' + urllib.parse.urlencode({
         'client_id': client_id, 'redirect_uri': redirect, 'response_type': 'code', 'scope': SCOPES,
-        'access_type': 'offline', 'prompt': 'consent', 'state': state})
+        'access_type': 'offline', 'prompt': 'select_account consent', 'state': state})
     print('\nOpening Google. Choose the account and the Gainly channel, then Allow.')
     print('If the browser does not open, copy this address into it:\n' + auth + '\n')
     webbrowser.open(auth)
