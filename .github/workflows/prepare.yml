@@ -1,0 +1,44 @@
+name: Prepare today's post
+# 08:00 India time: makes today's picture and video (with voice), puts them online and opens the approval issue.
+on:
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to prepare (YYYY-MM-DD), empty for today'
+        required: false
+concurrency:
+  group: data
+  cancel-in-progress: false
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: github-pages
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      POST_DATE: ${{ inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - run: pip install -q playwright numpy scipy cryptography && python3 -m playwright install --with-deps chromium
+      - run: sh tools/data.sh get
+      - run: python3 autopilot/prepare.py
+        env:
+          GOOGLE_TTS_KEY: ${{ secrets.GOOGLE_TTS_KEY }}
+      - run: sh tools/data.sh save && sh tools/data.sh site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
+      - run: python3 autopilot/approval.py open && sh tools/data.sh save

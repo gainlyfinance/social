@@ -21,4 +21,21 @@ Format: suspense, the second number is hidden and sent to people who comment the
 - `maker/music.py`: background music made by code, different for every video (seeded by the slug), no copyright.
 - `assets/`: logo (from `web/public/img/brand`) and fonts (Anek, SIL Open Font License).
 
-Not built yet: voice (Sarvam or Google TTS), uploading to YouTube, Instagram and Facebook, the daily GitHub Action.
+## The daily autopilot (GitHub Actions)
+
+| Workflow | When (India time) | What |
+|---|---|---|
+| Prepare today's post | 08:00 | Makes today's picture and video with the Hindi voice (`config.json` voice), puts them on GitHub Pages, opens an issue for the owner |
+| Publish photo | 13:00 | Instagram, Facebook, Threads |
+| Publish video | 18:30 | YouTube Short, Instagram Reel, Facebook Reel, Threads |
+| Answer keyword comments | every 30 min | Replies to comments with the post's keyword (`SIP 20` …) with the post's `reply` |
+| Check keys | by hand | Tests every secret, posts nothing |
+| Voice samples | by hand | Same video in several Hindi voices |
+
+- `config.json`: `start_date` (nothing runs on schedule before it), `mode` (`approve`: write `stop` on the day's issue
+  to hold the posts, `auto`: no issue needed), voice, platforms.
+- `queue/2026-MM.json`: one entry per day with a `date`. A day with no entry is skipped.
+- The `data` branch (rewritten as one commit each time) keeps the media of the last 21 days and the state: what was
+  posted where (`state/published.json`), which comments were answered, and the renewed Threads token (encrypted).
+- Manual runs of Publish and Answer default to a dry run that only prints what would happen.
+- Secrets: see `tools/verify.py`. GitHub Pages must be set to "GitHub Actions" (Settings > Pages).
