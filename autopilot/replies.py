@@ -11,7 +11,7 @@ from common import CONFIG, DRY, log, queue_items, save_state, state
 from tokens import threads_token
 
 DEV_DIGITS = str.maketrans('०१२३४५६७८९', '0123456789')
-WORDS = {'बीस': '20', 'पच्चीस': '25', 'दस': '10', 'बेटी': 'BETI'}
+WORDS = {'पच्चीस': '25', 'बीस': '20', 'पांच': '5', 'दस': '10', 'बेटी': 'BETI'}
 
 
 def norm(text):

@@ -1,12 +1,12 @@
-"""Morning job: make today's picture and video (with voice) into the data folder.
+"""Evening job: make tomorrow's picture and video (with voice) into the data folder.
 
-    python3 autopilot/prepare.py            today (India time)
+    python3 autopilot/prepare.py            tomorrow (India time)
     POST_DATE=2026-11-01 python3 autopilot/prepare.py
 """
 import os
 import sys
 
-from common import started, CONFIG, ROOT, item_for, log, media_dir, save_state, state, today
+from common import started, CONFIG, ROOT, item_for, log, media_dir, prepare_date, save_state, state
 
 sys.path.insert(0, str(ROOT / 'maker'))
 import make  # noqa: E402
@@ -14,10 +14,10 @@ from playwright.sync_api import sync_playwright  # noqa: E402
 
 
 def main():
-    if not started():
-        log('Autopilot not started yet (config.json start_date). Nothing to do.')
+    date = prepare_date()
+    if not started(date):
+        log('Autopilot not started yet for', date, '(config.json start_date). Nothing to do.')
         return 0
-    date = today()
     item = item_for(date)
     if not item:
         log('No post planned for', date, '(add it to queue/). Nothing to do.')

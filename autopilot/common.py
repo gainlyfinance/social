@@ -19,13 +19,18 @@ def today():
     return os.environ.get('POST_DATE') or dt.datetime.now(IST).date().isoformat()
 
 
-def started():
-    """Scheduled runs do nothing until config.json has a start_date on or before today (manual runs with a date
-    or a dry run always go ahead)."""
+def prepare_date():
+    """The evening job prepares tomorrow's post (India time), so the owner can see it the night before."""
+    return os.environ.get('POST_DATE') or (dt.datetime.now(IST).date() + dt.timedelta(days=1)).isoformat()
+
+
+def started(date=None):
+    """Scheduled runs do nothing until config.json has a start_date on or before the post's date (manual runs with
+    a date or a dry run always go ahead)."""
     if os.environ.get('POST_DATE') or DRY:
         return True
     start = CONFIG.get('start_date') or ''
-    return bool(start) and start <= today()
+    return bool(start) and start <= (date or today())
 
 
 def log(*a):

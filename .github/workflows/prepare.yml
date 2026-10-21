@@ -1,12 +1,12 @@
-name: Prepare today's post
-# 08:00 India time: makes today's picture and video (with voice), puts them online and opens the approval issue.
+name: Prepare tomorrow's post
+# 20:30 India time: makes tomorrow's picture and video (with voice), puts them online and opens the approval issue.
 on:
   schedule:
-    - cron: '30 2 * * *'
+    - cron: '0 15 * * *'
   workflow_dispatch:
     inputs:
       date:
-        description: 'Date to prepare (YYYY-MM-DD), empty for today'
+        description: 'Date to prepare (YYYY-MM-DD), empty for tomorrow'
         required: false
 concurrency:
   group: data

@@ -1,15 +1,15 @@
-"""Approve mode: every morning a GitHub issue shows today's video and picture to the owner. Writing "stop" in a
+"""Approve mode: every evening a GitHub issue shows tomorrow's video and picture to the owner. Writing "stop" in a
 comment (or adding the label "stop") keeps the day's posts from going out.
 
     python3 autopilot/approval.py open      after the media is online
 """
 import sys
 
-from common import CONFIG, gh, item_for, log, media_url, save_state, state, today, wait_until_online
+from common import CONFIG, gh, item_for, log, media_url, prepare_date, save_state, state, wait_until_online
 
 
 def open_issue():
-    date = today()
+    date = prepare_date()
     item = item_for(date)
     days = state('days')
     if not item or not days.get(date, {}).get('prepared'):
@@ -23,12 +23,12 @@ def open_issue():
         log('Issue already open:', days[date]['issue'])
         return
     mode = CONFIG.get('mode', 'approve')
-    body = (f"@{CONFIG['owner_github']} आज की पोस्ट ({date})\n\n"
+    body = (f"@{CONFIG['owner_github']} कल की पोस्ट ({date})\n\n"
             f"**{item['title']}**\n\n"
             f"- वीडियो: {video}\n- फोटो: {photo}\n\n"
             f"**कीवर्ड:** `{item['keyword']}`\n\n**जवाब (कमेंट करने वालों को):**\n> {item['reply']}\n\n"
             f"**कैप्शन:**\n> {item['caption']}\n\n"
-            + ("फोटो दोपहर 1 बजे और वीडियो शाम 6:30 बजे जाएंगे। रोकना हो तो यहां कमेंट में `stop` लिखें।"
+            + (f"वीडियो {date} को सुबह 6 बजे और फोटो शाम 7 बजे जाएंगे। रोकना हो तो उससे पहले यहां कमेंट में `stop` लिखें।"
                if mode == 'approve' else 'Auto mode: posts go out on time.'))
     issue = gh('POST', '/issues', {'title': f'{date}: {item["title"]}', 'body': body, 'labels': ['today']})
     days[date]['issue'] = issue['number']

@@ -1,8 +1,8 @@
 name: Publish video
-# 18:30 India time: posts today's video, unless the owner wrote "stop" on today's issue.
+# 06:00 India time: posts today's video, unless the owner wrote "stop" on its issue.
 on:
   schedule:
-    - cron: '0 13 * * *'
+    - cron: '30 0 * * *'
   workflow_dispatch:
     inputs:
       dry_run:

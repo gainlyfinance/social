@@ -16,10 +16,10 @@ from tokens import threads_token
 
 
 def main(kind):
-    if not started():
+    date = today()
+    if not started(date):
         log('Autopilot not started yet (config.json start_date). Nothing to do.')
         return 0
-    date = today()
     item = item_for(date)
     day = state('days').get(date, {})
     if not item or not day.get('prepared'):

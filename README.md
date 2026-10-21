@@ -25,9 +25,9 @@ Format: suspense, the second number is hidden and sent to people who comment the
 
 | Workflow | When (India time) | What |
 |---|---|---|
-| Prepare today's post | 08:00 | Makes today's picture and video with the Hindi voice (`config.json` voice), puts them on GitHub Pages, opens an issue for the owner |
-| Publish photo | 13:00 | Instagram, Facebook, Threads |
-| Publish video | 18:30 | YouTube Short, Instagram Reel, Facebook Reel, Threads |
+| Prepare tomorrow's post | 20:30 the evening before | Makes the picture and video with the Hindi voice (`config.json` voice), puts them on GitHub Pages, opens an issue for the owner |
+| Publish video | 06:00 | YouTube Short, Instagram Reel, Facebook Reel, Threads |
+| Publish photo | 19:00 | Instagram, Facebook, Threads |
 | Answer keyword comments | every 30 min | Replies to comments with the post's keyword (`SIP 20` …) with the post's `reply` |
 | Check keys | by hand | Tests every secret, posts nothing |
 | Voice samples | by hand | Same video in several Hindi voices |
