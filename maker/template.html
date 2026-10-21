@@ -117,8 +117,8 @@ if (MODE === 'card') {
 }
 
 // Scene timings in seconds: [start, end]
-const SC = { s1: [0, 3.4], s2: [3.2, 8.0], s3: [7.8, 14.4], s4: [14.2, 19.6], s5: [19.4, 24.0], s6: [23.8, 28.5] };
-window.DURATION = 28.5;
+const SC = window.TIMINGS || { s1: [0, 3.4], s2: [3.2, 8.0], s3: [7.8, 14.4], s4: [14.2, 19.6], s5: [19.4, 24.0], s6: [23.8, 28.5] };
+window.DURATION = SC.s6[1];
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = x => 1 - Math.pow(1 - clamp(x), 3);
 function show(id, t) {

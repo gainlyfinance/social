@@ -1,0 +1,27 @@
+name: Voice samples
+# Makes one video with several Hindi voices. Download them from the run page (Artifacts) and pick a voice.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Which sample video'
+        default: 'sip-5000-10-saal'
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - run: pip install -q playwright numpy scipy && python3 -m playwright install --with-deps chromium
+      - run: python3 tools/voice_samples.py queue/samples.json out "${{ inputs.slug }}"
+        env:
+          GOOGLE_TTS_KEY: ${{ secrets.GOOGLE_TTS_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voice-samples
+          path: out/*.mp4
+          retention-days: 14
