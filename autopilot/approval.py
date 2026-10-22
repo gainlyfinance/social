@@ -31,6 +31,8 @@ def open_issue():
             + (f"वीडियो {date} को सुबह 6 बजे और फोटो शाम 7 बजे जाएंगे। रोकना हो तो उससे पहले यहां कमेंट में `stop` लिखें।"
                if mode == 'approve' else 'Auto mode: posts go out on time.'))
     issue = gh('POST', '/issues', {'title': f'{date}: {item["title"]}', 'body': body, 'labels': ['today']})
+    # Locked: only the owner and collaborators can comment, so nobody else can write "stop" or spam it.
+    gh('PUT', f"/issues/{issue['number']}/lock", {'lock_reason': 'off-topic'})
     days[date]['issue'] = issue['number']
     save_state('days', days)
     log('Opened issue', issue['number'])
