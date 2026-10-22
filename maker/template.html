@@ -7,23 +7,26 @@
 @font-face { font-family: Anek; src: url(../assets/fonts/anek-devanagari-700.woff2) format("woff2"); font-weight: 700; }
 @font-face { font-family: AnekLatin; src: url(../assets/fonts/anek-latin-var.woff2) format("woff2"); font-weight: 100 900; }
 :root {
-  --ink: #13294b; --ink-2: #1c3a66; --paper: #f3f7f5; --white: #ffffff; --soft: #c9d4e4;
-  --gain: #2fb383; --gain-deep: #0e7a5c; --gold: #e39b12; --cost: #e0566a; --base: #8fa6c1;
+  /* colours are set per post by the theme (see THEMES below), these are the navy defaults */
+  --ink: #13294b; --white: #ffffff; --soft: #c9d4e4; --muted: rgba(201,212,228,.7);
+  --panel: rgba(255,255,255,.07); --track: rgba(255,255,255,.08); --line: rgba(201,212,228,.35);
+  --gain: #2fb383; --gold: #e39b12; --gold-bg: rgba(227,155,18,.12); --cost: #e0566a; --base: #8fa6c1;
   --font: AnekLatin, Anek, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0 }
 html, body { width: var(--w); height: var(--h); overflow: hidden; background: var(--ink); color: var(--white); font-family: var(--font) }
-.frame { position: absolute; inset: 0; background: radial-gradient(120% 70% at 85% 0%, var(--ink-2) 0%, var(--ink) 60%) }
+.frame { position: absolute; inset: 0 }
+.frame .pat { position: absolute; inset: 0 }
 .top { position: absolute; left: 72px; right: 72px; top: 90px; display: flex; align-items: center; gap: 22px }
 .top .logo { height: 96px; width: auto }
 .brand { font-weight: 700; font-size: 46px; letter-spacing: .5px }
-.tag { margin-left: auto; font-size: 30px; color: var(--soft); border: 2px solid rgba(201,212,228,.35); border-radius: 40px; padding: 8px 24px }
+.tag { margin-left: auto; font-size: 30px; color: var(--soft); border: 2px solid var(--line); border-radius: 40px; padding: 8px 24px }
 .scene { position: absolute; left: 72px; right: 72px; top: 260px; bottom: 420px; display: flex; flex-direction: column; justify-content: center; gap: 36px; opacity: 0 }
 h1 { font-weight: 700; font-size: 104px; line-height: 1.12; text-wrap: balance }
 .who { font-size: 46px; color: var(--soft) }
 .who b { color: var(--white); font-weight: 700 }
 .rows { display: flex; flex-direction: column; gap: 22px }
-.row { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; background: rgba(255,255,255,.07); border-radius: 26px; padding: 30px 36px; font-size: 44px }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; background: var(--panel); border-radius: 26px; padding: 30px 36px; font-size: 44px }
 .row span { color: var(--soft) }
 .row b { font-weight: 700; text-align: right }
 .label { font-size: 50px; color: var(--soft) }
@@ -32,7 +35,7 @@ h1 { font-weight: 700; font-size: 104px; line-height: 1.12; text-wrap: balance }
 .bars { display: flex; flex-direction: column; gap: 26px; margin-top: 16px }
 .bar .t { display: flex; justify-content: space-between; font-size: 38px; margin-bottom: 10px; color: var(--soft) }
 .bar .t b { color: var(--white); font-variant-numeric: tabular-nums }
-.track { height: 46px; background: rgba(255,255,255,.08); border-radius: 23px; overflow: hidden }
+.track { height: 46px; background: var(--track); border-radius: 23px; overflow: hidden }
 .fill { height: 100%; width: 0; border-radius: 23px }
 .insight { font-weight: 700; font-size: 96px; line-height: 1.15; text-wrap: balance }
 .insight em { font-style: normal; color: var(--gold) }
@@ -40,17 +43,17 @@ h1 { font-weight: 700; font-size: 104px; line-height: 1.12; text-wrap: balance }
 .cta { font-size: 56px; color: var(--soft) }
 .site { font-weight: 700; font-size: 130px; color: var(--white) }
 .site i { font-style: normal; color: var(--gold) }
-.foot { position: absolute; left: 72px; right: 72px; bottom: 300px; font-size: 30px; color: rgba(201,212,228,.7) }
-.progress { position: absolute; left: 72px; right: 72px; top: 210px; height: 6px; background: rgba(255,255,255,.1); border-radius: 3px }
+.foot { position: absolute; left: 72px; right: 72px; bottom: 300px; font-size: 30px; color: var(--muted) }
+.progress { position: absolute; left: 72px; right: 72px; top: 210px; height: 6px; background: var(--track); border-radius: 3px }
 .progress div { height: 100%; width: 0; background: var(--gold); border-radius: 3px }
 
 .mystery { font-weight: 700; font-size: 150px; line-height: 1; color: var(--gold); letter-spacing: -2px }
 .shock { font-weight: 700; font-size: 64px; color: var(--cost) }
 .ask { font-size: 54px; color: var(--soft) }
-.keyword { align-self: flex-start; transform-origin: left center; font-family: AnekLatin, sans-serif; font-weight: 700; font-size: 120px; line-height: 1; padding: 30px 48px; border: 6px solid var(--gold); border-radius: 36px; background: rgba(227,155,18,.12) }
+.keyword { align-self: flex-start; transform-origin: left center; font-family: AnekLatin, sans-serif; font-weight: 700; font-size: 120px; line-height: 1; padding: 30px 48px; border: 6px solid var(--gold); border-radius: 36px; background: var(--gold-bg) }
 .small { font-size: 46px; color: var(--soft); line-height: 1.35 }
 .small b { color: var(--white) }
-.teaser { border: 3px solid var(--gold); border-radius: 28px; padding: 22px 28px; display: grid; gap: 8px; background: rgba(227,155,18,.08) }
+.teaser { border: 3px solid var(--gold); border-radius: 28px; padding: 22px 28px; display: grid; gap: 8px; background: var(--gold-bg) }
 .teaser .q { font-size: 40px; font-weight: 700 }
 .teaser .m { font-size: 64px; font-weight: 700; color: var(--gold); line-height: 1 }
 .teaser .k { font-size: 30px; color: var(--soft) }
@@ -77,7 +80,7 @@ body.card .top { top: 64px }
 </style>
 </head>
 <body>
-<div class="frame"></div>
+<div class="frame"><div class="pat"></div></div>
 <div id="root"></div>
 <script>
 const ITEM = window.ITEM;
@@ -85,15 +88,67 @@ const MODE = window.MODE || 'video';
 const W = MODE === 'video' ? 1080 : 1080, H = MODE === 'video' ? 1920 : 1350;
 document.documentElement.style.setProperty('--w', W + 'px');
 document.documentElement.style.setProperty('--h', H + 'px');
+// ---------- background themes (owner's rule 22 Oct 2026: posts must not all look the same dark blue) ----------
+// Each post gets a colour theme and a pattern. Chosen from the date so neighbouring days always differ, and the
+// picture post of a day uses a different theme from that day's video. A queue item can force one with "theme".
+const THEMES = {
+  navy:    {dark: 1, bg: ['#13294b', '#1c3a66'], gold: '#f0a92a'},
+  emerald: {dark: 1, bg: ['#073b2c', '#0f5a43'], gold: '#f4c542', gain: '#5fd6a4'},
+  plum:    {dark: 1, bg: ['#2a1246', '#4a1f78'], gold: '#ffb84d', base: '#a99bc4'},
+  wine:    {dark: 1, bg: ['#45101f', '#741d35'], gold: '#ffc857', cost: '#ff8a9a', base: '#c49aa6'},
+  teal:    {dark: 1, bg: ['#0b2e33', '#0f5156'], gold: '#ffa94d', base: '#8fb8bc'},
+  coal:    {dark: 1, bg: ['#141414', '#2b2b2b'], gold: '#ff8a3d', base: '#9a9a9a'},
+  sunrise: {dark: 0, bg: ['#fff3e0', '#ffe0b8'], ink: '#2b1a07', soft: '#6b4a24', gold: '#c2410c', gain: '#0e8a5f', cost: '#c9304a', base: '#a08562'},
+  mint:    {dark: 0, bg: ['#e6f6ef', '#c9ecdc'], ink: '#0d2f24', soft: '#3b6555', gold: '#b45309', gain: '#0e8a5f', cost: '#c9304a', base: '#7fa596'},
+  sky:     {dark: 0, bg: ['#eaf2ff', '#cfe0ff'], ink: '#13294b', soft: '#44597a', gold: '#c2410c', gain: '#0e8a5f', cost: '#c9304a', base: '#8299bb'},
+  rose:    {dark: 0, bg: ['#fdecef', '#f9d3db'], ink: '#3a0f1c', soft: '#7a4553', gold: '#b42318', gain: '#0e8a5f', cost: '#c9304a', base: '#b08a94'},
+};
+const ORDER = ['navy', 'sunrise', 'emerald', 'sky', 'plum', 'mint', 'wine', 'rose', 'teal', 'coal'];
+const PATTERNS = [
+  (a, c) => `radial-gradient(120% 70% at 85% 0%, ${c} 0%, transparent 60%)`,
+  (a, c) => `radial-gradient(60% 40% at 0% 100%, ${c} 0%, transparent 70%), radial-gradient(50% 30% at 100% 0%, ${c} 0%, transparent 70%)`,
+  (a, c) => `linear-gradient(160deg, ${c} 0%, transparent 55%)`,
+  (a, c) => `radial-gradient(circle at 100% 30%, ${c} 0 22%, transparent 22.2%), radial-gradient(circle at 0% 85%, ${c} 0 16%, transparent 16.2%)`,
+  (a, c) => `linear-gradient(200deg, ${c} 0%, transparent 45%), linear-gradient(20deg, ${c} 0%, transparent 35%)`,
+];
+const TEXTURES = [  // a faint second layer: dots, lines or a grid
+  d => `radial-gradient(${d} 2px, transparent 2.5px) 0 0 / 44px 44px`,
+  d => `repeating-linear-gradient(135deg, ${d} 0 2px, transparent 2px 38px)`,
+  d => `linear-gradient(${d} 1.5px, transparent 1.5px) 0 0 / 64px 64px, linear-gradient(90deg, ${d} 1.5px, transparent 1.5px) 0 0 / 64px 64px`,
+  d => 'none',
+];
+const dayNo = Math.floor(Date.parse((ITEM.date || '2026-01-01') + 'T00:00:00Z') / 864e5);
+const pick = MODE === 'card' ? dayNo + 5 : dayNo;
+const THEME_NAME = (MODE === 'card' ? ITEM.card_theme : ITEM.theme) || ORDER[((pick % ORDER.length) + ORDER.length) % ORDER.length];
+const TH = THEMES[THEME_NAME] || THEMES.navy;
+{
+  const r = document.documentElement.style, dark = !!TH.dark;
+  const set = (k, v) => r.setProperty('--' + k, v);
+  set('ink', TH.bg[0]); set('white', dark ? '#ffffff' : (TH.ink || '#13294b')); set('soft', dark ? (TH.soft || '#d3dceb') : TH.soft);
+  set('muted', dark ? 'rgba(220,228,240,.7)' : TH.soft);
+  set('panel', dark ? 'rgba(255,255,255,.08)' : 'rgba(255,255,255,.62)');
+  set('track', dark ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.08)');
+  set('line', dark ? 'rgba(220,228,240,.35)' : 'rgba(0,0,0,.18)');
+  set('gold', TH.gold); set('gold-bg', TH.gold + (dark ? '1f' : '14'));
+  if (TH.gain) set('gain', TH.gain); if (TH.cost) set('cost', TH.cost); if (TH.base) set('base', TH.base);
+  const pat = PATTERNS[((pick % PATTERNS.length) + PATTERNS.length) % PATTERNS.length];
+  const tex = TEXTURES[((Math.floor(pick / 2) % TEXTURES.length) + TEXTURES.length) % TEXTURES.length];
+  const f = document.querySelector('.frame');
+  f.style.background = pat(TH.bg[0], TH.bg[1]) + ', ' + TH.bg[0];
+  f.querySelector('.pat').style.background = tex(dark ? 'rgba(255,255,255,.05)' : 'rgba(0,0,0,.045)');
+  document.body.style.background = TH.bg[0];
+}
+const LOGO = TH.dark ? '../assets/gainly-logo-white.svg' : '../assets/gainly-logo-dark.svg';
+window.THEME = THEME_NAME;
 const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const tone = t => ({gain: 'var(--gain)', cost: 'var(--cost)', base: 'var(--base)'}[t] || 'var(--base)');
 const maxBar = Math.max(...ITEM.bars.map(b => b.value), 1);
-const topbar = `<div class="top"><img class="logo" src="../assets/gainly-logo-white.svg" alt="Gainly"><div class="tag">फ्री कैलकुलेटर</div></div>`;
+const topbar = `<div class="top"><img class="logo" src="${LOGO}" alt="Gainly"><div class="tag">फ्री कैलकुलेटर</div></div>`;
 const rows = ITEM.inputs.map(([k, v]) => `<div class="row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
 const bars = ITEM.bars.map((b, i) => `<div class="bar"><div class="t"><span>${esc(b.label)}</span><b>${inr(b.value)}</b></div><div class="track"><div class="fill" id="fill${i}" style="background:${tone(b.tone)}"></div></div></div>`).join('');
 
-const hidden = String(ITEM.twist.value >= 1e7 ? '₹?,??,??,???' : ITEM.twist.value >= 1e5 ? '₹??,??,???' : '₹??,???');
+const hidden = inr(ITEM.twist.value).replace(/\d/g, '?');   // same shape as the real number, digits hidden
 const keyword = esc(ITEM.keyword);
 
 if (MODE === 'card') {
@@ -112,7 +167,7 @@ if (MODE === 'card') {
     <div class="scene" id="s3"><div class="label">${esc(ITEM.result.label)}</div><div class="big" id="big">₹0</div><div class="underline" id="ul"></div><div class="bars">${bars}</div></div>
     <div class="scene" id="s4"><h1>${esc(ITEM.twist.question)}</h1><div class="mystery" id="mys">${hidden}</div><div class="shock" id="shock">जवाब देखकर चौंक जाएंगे!</div></div>
     <div class="scene" id="s5"><div class="ask">जवाब चाहिए? कमेंट में लिखें</div><div class="keyword" id="kw">${keyword}</div><div class="small">हम आपको जवाब भेज देंगे।</div></div>
-    <div class="scene" id="s6"><div class="small"><b>फॉलो / सब्सक्राइब</b> करना न भूलें</div><div class="small">और बताइए, <b>${esc(ITEM.question)}</b></div><img src="../assets/gainly-logo-white.svg" alt="Gainly" style="height:130px;width:auto;align-self:flex-start;margin-top:30px"><div class="site">gainly<i>.in</i></div></div>
+    <div class="scene" id="s6"><div class="small"><b>फॉलो / सब्सक्राइब</b> करना न भूलें</div><div class="small">और बताइए, <b>${esc(ITEM.question)}</b></div><img src="${LOGO}" alt="Gainly" style="height:130px;width:auto;align-self:flex-start;margin-top:30px"><div class="site">gainly<i>.in</i></div></div>
     <div class="foot">ये अंदाज़ा है, निवेश या टैक्स की सलाह नहीं।</div>`;
 }
 

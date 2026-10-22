@@ -18,6 +18,10 @@ Format: suspense, the second number is hidden and sent to people who comment the
   No example person (name, town) in social posts: those stay in the blog posts only.
 - `maker/template.html`: the look (site logo, Gainly colours, Anek font). The same page draws the picture and,
   frame by frame, the video.
+- Backgrounds change every day (owner's rule, 22 Oct 2026: not everything the same dark blue). `THEMES` in the
+  template has 10 colour themes (6 dark, 4 light, the light ones use the dark logo) and 5 patterns plus textures.
+  The theme is picked from the date, so two days in a row never match, and the day's picture uses a different theme
+  from the day's video. A queue entry can force one with `"theme"` (video) or `"card_theme"` (picture).
 - `maker/music.py`: background music made by code, different for every video (seeded by the slug), no copyright.
 - `assets/`: logo (from `web/public/img/brand`) and fonts (Anek, SIL Open Font License).
 
@@ -37,6 +41,8 @@ Format: suspense, the second number is hidden and sent to people who comment the
 - `config.json`: `start_date` (nothing runs on schedule before it), `mode` (`approve`: write `stop` on the day's issue
   to hold the posts, `auto`: no issue needed), voice, platforms.
 - `queue/2026-MM.json`: one entry per day with a `date`. A day with no entry is skipped.
+  When fewer than 5 days are left in the queue, the evening job opens a locked `queue` issue (GitHub emails the
+  owner). It closes itself once the queue is filled. Claude prepares the next month's queue around the 20th.
 - The `data` branch (rewritten as one commit each time) keeps the media of the last 21 days and the state: what was
   posted where (`state/published.json`), which comments were answered, and the renewed Threads token (encrypted).
 - Manual runs of Publish and Answer default to a dry run that only prints what would happen.

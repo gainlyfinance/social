@@ -42,3 +42,6 @@ jobs:
           path: site
       - uses: actions/deploy-pages@v4
       - run: python3 autopilot/approval.py open && sh tools/data.sh save
+      - name: Warn when the queue is running out
+        if: always()
+        run: python3 autopilot/approval.py queue

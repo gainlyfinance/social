@@ -2,10 +2,14 @@
 comment (or adding the label "stop") keeps the day's posts from going out.
 
     python3 autopilot/approval.py open      after the media is online
+    python3 autopilot/approval.py queue     warns the owner when fewer than 5 days of posts are left in queue/
 """
+import datetime as dt
 import sys
 
-from common import CONFIG, gh, item_for, log, media_url, prepare_date, save_state, state, wait_until_online
+from common import CONFIG, gh, item_for, log, media_url, prepare_date, queue_items, save_state, state, wait_until_online
+
+QUEUE_WARN_DAYS = 5
 
 
 def open_issue():
@@ -63,6 +67,41 @@ def note(date, text, close=False):
         gh('PATCH', f'/issues/{n}', {'state': 'closed'})
 
 
+def days_left():
+    """How many days in a row after the day being prepared already have a post in queue/."""
+    have = {it['date'] for it in queue_items()}
+    d, n = dt.date.fromisoformat(prepare_date()), 0
+    while (d + dt.timedelta(days=n + 1)).isoformat() in have:
+        n += 1
+    return n
+
+
+def queue_warning():
+    """Opens one locked issue (GitHub emails the owner) when the queue is running out. Closes it again once
+    the queue has been filled."""
+    left = days_left()
+    open_ = gh('GET', '/issues?state=open&labels=queue&per_page=10')
+    open_ = open_ if isinstance(open_, list) else []
+    if left >= QUEUE_WARN_DAYS:
+        for i in open_:
+            gh('POST', f"/issues/{i['number']}/comments", {'body': f'Queue भर गई, अब {left} दिन की पोस्ट तैयार हैं।'})
+            gh('PATCH', f"/issues/{i['number']}", {'state': 'closed'})
+        log('Queue OK:', left, 'days left')
+        return
+    if open_:
+        log('Queue low,', left, 'days left, issue already open:', open_[0]['number'])
+        return
+    last = (dt.date.fromisoformat(prepare_date()) + dt.timedelta(days=left)).isoformat()
+    body = (f"@{CONFIG['owner_github']} Queue में सिर्फ **{left} दिन** की पोस्ट बची हैं (आखिरी: {last})।\n\n"
+            f"उसके बाद कुछ पोस्ट नहीं होगा। Claude से अगले महीने की queue बनवा लें "
+            f"(`queue/YYYY-MM.json`)। Queue भरते ही ये issue अपने आप बंद हो जाएगा।")
+    issue = gh('POST', '/issues', {'title': f'Queue खत्म होने वाली है: {left} दिन बचे', 'body': body, 'labels': ['queue']})
+    gh('PUT', f"/issues/{issue['number']}/lock", {'lock_reason': 'off-topic'})
+    log('Queue low, opened issue', issue['number'])
+
+
 if __name__ == '__main__':
     if sys.argv[1:] == ['open']:
         open_issue()
+    elif sys.argv[1:] == ['queue']:
+        queue_warning()
