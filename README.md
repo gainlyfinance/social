@@ -32,6 +32,8 @@ Format: suspense, the second number is hidden and sent to people who comment the
 | Check keys | by hand | Tests every secret, posts nothing |
 | Voice samples | by hand | Same video in several Hindi voices |
 
+- Every issue the autopilot opens is locked at once (only the owner and collaborators can comment), and only their
+  `stop` counts.
 - `config.json`: `start_date` (nothing runs on schedule before it), `mode` (`approve`: write `stop` on the day's issue
   to hold the posts, `auto`: no issue needed), voice, platforms.
 - `queue/2026-MM.json`: one entry per day with a `date`. A day with no entry is skipped.
