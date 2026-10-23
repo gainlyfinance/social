@@ -14,7 +14,7 @@ DEV_DIGITS = str.maketrans('०१२३४५६७८९', '0123456789')
 # Hindi words people may type instead of the keyword's Latin letters or digits (longer words first).
 WORDS = {'पच्चीस': '25', 'पैंतीस': '35', 'पंद्रह': '15', 'अठारह': '18', 'चालीस': '40', 'सत्तर': '70', 'तीस': '30',
          'बीस': '20', 'पांच': '5', 'पाँच': '5', 'दस': '10', 'सात': '7', 'चार': '4', 'बेटी': 'BETI', 'लोन': 'LOAN',
-         'होम': 'HOME', 'टैक्स': 'TAX', 'गोल्ड': 'GOLD', 'सोना': 'GOLD', 'महंगाई': 'MEHNGAI', 'खर्च': 'KHARCH',
+         'होम': 'HOME', 'टैक्स': 'TAX', 'गोल्ड': 'GOLD', 'सोना': 'GOLD', 'चेन': 'CHAIN', 'चैन': 'CHAIN', 'महंगाई': 'MEHNGAI', 'खर्च': 'KHARCH',
          'फीस': 'FEES', 'करोड़': 'CRORE', 'ब्याज': 'BYAJ', 'लम्प': 'LUMP'}
 
 
