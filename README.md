@@ -15,6 +15,11 @@ Format: suspense, the second number is hidden and sent to people who comment the
 
 - `queue/*.json`: one entry per post: hook, inputs, result, bars, twist (hidden second number), keyword,
   reply, question, note, title, caption, hashtags, mood (calm, growth, serious, desi). Numbers always come from the gainly.in calculators.
+  `query` (required from Nov 2026): the video's inputs as the calculator's own URL parameters, for example
+  `monthly=10000&rate=12&years=15` for sip-calculator, so every link opens the page with the video's number already
+  on screen. Field names are in `web/src/Calculator/Calculators/*.php` of the main repo (Field::money('monthly', …)).
+  The links carry UTM tags (`utm_source=youtube|facebook|threads|youtube-comment`), and every Short gets a first
+  comment from the channel with the link.
   No example person (name, town) in social posts: those stay in the blog posts only.
 - `maker/template.html`: the look (site logo, Gainly colours, Anek font). The same page draws the picture and,
   frame by frame, the video.

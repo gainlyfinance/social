@@ -129,9 +129,12 @@ def gh(method, path, body=None):
 
 
 def site_link(item, platform):
-    """The Hindi calculator page with UTM tags, so GA4 shows which platform the visit came from
+    """The Hindi calculator page, opened with the video's own inputs (`query`, the calculator's field names, so the
+    viewer sees the number from the video at once), plus UTM tags so GA4 shows which platform the visit came from
     (traffic from the Instagram and Facebook apps otherwise looks like Direct)."""
-    return f"https://gainly.in/hi/{item['calculator']}?utm_source={platform}&utm_medium=social&utm_campaign={item['slug']}"
+    query = (item.get('query') or '').strip('&?')
+    return (f"https://gainly.in/hi/{item['calculator']}?{query + '&' if query else ''}"
+            f"utm_source={platform}&utm_medium=social&utm_campaign={item['slug']}")
 
 
 def caption_for(item, platform):

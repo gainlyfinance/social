@@ -810,6 +810,7 @@
   "slug": "home-loan-kitna-milega-60k-salary",
   "mood": "calm",
   "calculator": "home-loan-eligibility-calculator",
+  "query": "income=60000&rate=8.5&years=20",
   "hook": "₹60,000 महीने की सैलरी, कितना होम लोन मिल सकता है?",
   "inputs": [
    [
@@ -872,6 +873,7 @@
   "slug": "1-lakh-chakravriddhi-30-saal",
   "mood": "growth",
   "calculator": "compound-interest-calculator",
+  "query": "principal=100000&rate=8&years=20",
   "hook": "₹1 लाख पर 8% चक्रवृद्धि ब्याज, 20 साल में कितना?",
   "inputs": [
    [
@@ -934,6 +936,7 @@
   "slug": "1-crore-sip-15-ya-20-saal",
   "mood": "growth",
   "calculator": "sip-goal-calculator",
+  "query": "goal=10000000&rate=12&years=15",
   "hook": "₹1 करोड़ बनाने के लिए, 15 साल तक हर महीने कितनी SIP?",
   "inputs": [
    [
@@ -996,6 +999,7 @@
   "slug": "home-loan-5-lakh-emi-ya-samay",
   "mood": "serious",
   "calculator": "home-loan-prepayment-calculator",
+  "query": "outstanding=4000000&rate=8.5&years=20&prepay=500000",
   "hook": "होम लोन में ₹5 लाख एक साथ भरें, तो कितना ब्याज बचेगा?",
   "inputs": [
    [
@@ -1058,6 +1062,7 @@
   "slug": "home-loan-byaj-dar-ka-farak",
   "mood": "serious",
   "calculator": "loan-comparison-calculator",
+  "query": "amount=3000000&rateA=8.5&yearsA=20&rateB=8.9&yearsB=20",
   "hook": "होम लोन में ब्याज दर का 0.4% फर्क, कितना पड़ता है?",
   "inputs": [
    [
@@ -1120,6 +1125,7 @@
   "slug": "1-crore-25-saal-baad-kitna",
   "mood": "serious",
   "calculator": "inflation-calculator",
+  "query": "mode=today&amount=10000000&inflation=6&years=25",
   "hook": "आज के ₹1 करोड़, 25 साल बाद कितने के बराबर?",
   "inputs": [
    [
@@ -1182,6 +1188,7 @@
   "slug": "sip-10000-step-up",
   "mood": "growth",
   "calculator": "sip-calculator",
+  "query": "monthly=10000&rate=12&years=15",
   "hook": "₹10,000 की SIP 15 साल, और हर साल 10% बढ़ाएं तो?",
   "inputs": [
    [
@@ -1244,6 +1251,7 @@
   "slug": "ppf-5000-15-ya-20-saal",
   "mood": "calm",
   "calculator": "ppf-calculator",
+  "query": "yearly=60000&rate=7.1&years=15",
   "hook": "PPF में ₹5,000 महीना, 15 साल में कितना बनेगा?",
   "inputs": [
    [
@@ -1306,6 +1314,7 @@
   "slug": "sukanya-1-lakh-ya-1-5-lakh",
   "mood": "desi",
   "calculator": "sukanya-samriddhi-calculator",
+  "query": "yearly=100000&girlAge=3&rate=8.2",
   "hook": "सुकन्या योजना में हर साल ₹1 लाख, बेटी के लिए कितना बनेगा?",
   "inputs": [
    [
@@ -1368,6 +1377,7 @@
   "slug": "tax-15-ya-20-lakh-salary",
   "mood": "serious",
   "calculator": "income-tax-calculator",
+  "query": "income=1500000",
   "hook": "₹15 लाख सैलरी, नई व्यवस्था में कितना टैक्स?",
   "inputs": [
    [
@@ -1430,6 +1440,7 @@
   "slug": "50000-kharch-20-saal-baad",
   "mood": "serious",
   "calculator": "inflation-calculator",
+  "query": "mode=future&amount=50000&inflation=6&years=10",
   "hook": "आज ₹50,000 महीने का खर्च, 10 साल बाद कितना होगा?",
   "inputs": [
    [
@@ -1492,6 +1503,7 @@
   "slug": "sip-1000-20-ya-30-saal",
   "mood": "growth",
   "calculator": "sip-calculator",
+  "query": "monthly=1000&rate=12&years=20",
   "hook": "सिर्फ ₹1,000 की SIP, 20 साल में कितनी बनेगी?",
   "inputs": [
    [
@@ -1554,6 +1566,7 @@
   "slug": "kvp-paisa-double",
   "mood": "calm",
   "calculator": "kvp-calculator",
+  "query": "amount=100000&rate=7.5",
   "hook": "KVP में ₹1 लाख, कितने समय में डबल?",
   "inputs": [
    [
@@ -1616,6 +1629,7 @@
   "slug": "12-lakh-sip-ya-ek-saath",
   "mood": "growth",
   "calculator": "sip-calculator",
+  "query": "monthly=10000&rate=12&years=10",
   "hook": "₹12 लाख, 10 साल की SIP में या एक साथ?",
   "inputs": [
    [
@@ -1678,6 +1692,7 @@
   "slug": "sip-5-saal-der-se",
   "mood": "growth",
   "calculator": "sip-calculator",
+  "query": "monthly=10000&rate=12&years=25",
   "hook": "₹10,000 की SIP 25 साल में कितनी बनेगी?",
   "inputs": [
    [
@@ -1740,6 +1755,7 @@
   "slug": "10-lakh-padhai-15-saal-baad",
   "mood": "serious",
   "calculator": "inflation-calculator",
+  "query": "mode=future&amount=1000000&inflation=8&years=10",
   "hook": "आज ₹10 लाख की पढ़ाई, 10 साल बाद कितने की?",
   "inputs": [
    [
@@ -1802,6 +1818,7 @@
   "slug": "10-lakh-lumpsum-30-saal",
   "mood": "growth",
   "calculator": "lumpsum-calculator",
+  "query": "amount=1000000&rate=12&years=20",
   "hook": "₹10 लाख एक बार लगाए, 20 साल में कितने बनेंगे?",
   "inputs": [
    [
