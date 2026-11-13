@@ -128,15 +128,27 @@ def gh(method, path, body=None):
                 headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'})
 
 
+def site_link(item, platform):
+    """The Hindi calculator page with UTM tags, so GA4 shows which platform the visit came from
+    (traffic from the Instagram and Facebook apps otherwise looks like Direct)."""
+    return f"https://gainly.in/hi/{item['calculator']}?utm_source={platform}&utm_medium=social&utm_campaign={item['slug']}"
+
+
 def caption_for(item, platform):
-    """Caption with hashtags and the calculator link where links work."""
-    link = f"https://gainly.in/hi/{item['calculator']}"
+    """Caption with hashtags and the calculator link where links work (Instagram captions cannot carry one)."""
+    link = site_link(item, platform)
     tags = ' '.join(item.get('hashtags', []))
     text = item['caption']
     if platform == 'threads':
-        return (text[: 440] + ' ' + (item.get('hashtags') or ['#Gainly'])[0]).strip()
+        # Threads shows the first link as a card. 500 character limit.
+        return (text[: 380] + ' ' + (item.get('hashtags') or ['#Gainly'])[0] + '\n' + link).strip()
     if platform == 'facebook':
         return f'{text}\n\n{link}\n\n{tags}'
     if platform == 'youtube':
         return f"{text}\n\nफ्री कैलकुलेटर: {link}\n\n{tags} #Shorts"
     return f'{text}\n\n{tags}'
+
+
+def first_comment_for(item):
+    """Our own first comment under the YouTube Short: the link people can tap (descriptions are folded on Shorts)."""
+    return f"फ्री कैलकुलेटर, अपने आंकड़े डालकर देखें: {site_link(item, 'youtube-comment')}"

@@ -11,7 +11,7 @@ import time
 
 import approval
 import platforms as P
-from common import started, CONFIG, DRY, caption_for, item_for, log, media_dir, media_url, save_state, state, today
+from common import started, CONFIG, DRY, caption_for, first_comment_for, item_for, log, media_dir, media_url, save_state, state, today
 from tokens import threads_token
 
 
@@ -46,6 +46,11 @@ def main(kind):
             if kind == 'video':
                 if platform == 'youtube':
                     pid = P.youtube_short(str(video_file), item['title'], caption_for(item, 'youtube'), item.get('hashtags', []))
+                    # Best effort: the Short is up even if the comment fails.
+                    try:
+                        P.youtube_comment(pid, first_comment_for(item))
+                    except Exception as e:  # noqa: BLE001
+                        log('First comment on YouTube failed -', e)
                 elif platform == 'instagram':
                     pid = P.instagram_reel(video_url, caption_for(item, 'instagram'), item.get('ig_audio_id'))
                 elif platform == 'facebook':

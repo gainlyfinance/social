@@ -66,6 +66,16 @@ def youtube_comments(video_id):
     return out
 
 
+def youtube_comment(video_id, text):
+    """A top-level comment from the channel on its own video."""
+    if DRY:
+        return dry('comment on YouTube', video=video_id, text=text)
+    tok = yt_token()
+    return http('POST', 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet',
+                json_body={'snippet': {'videoId': video_id, 'topLevelComment': {'snippet': {'textOriginal': text}}}},
+                headers={'Authorization': f'Bearer {tok}'})['id']
+
+
 def youtube_reply(comment_id, text):
     if DRY:
         return dry('reply on YouTube', to=comment_id, text=text)
